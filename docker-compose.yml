@@ -7,4 +7,4 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
     volumes:
-      - ./books.db:/app/books.db
+      - ./data:/app/data
