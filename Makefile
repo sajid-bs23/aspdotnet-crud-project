@@ -1,7 +1,7 @@
 ifeq ($(OS),Windows_NT)
-CLEAN_UP = if exist out (rd /s /q out) & if exist bin (rd /s /q bin) & if exist obj (rd /s /q obj) & if exist coverage.xml (del /q coverage.xml) & if exist dotCoverReport.html (del /q dotCoverReport.html)
+CLEAN_UP = if exist out (rd /s /q out) & if exist bin (rd /s /q bin) & if exist obj (rd /s /q obj) & if exist coverage.xml (del /q coverage.xml) & if exist dotCoverReport.html (del /q dotCoverReport.html) & if exist db (rd /s /q db)
 else
-CLEAN_UP = rm -rf out bin obj coverage.xml dotCoverReport.html
+CLEAN_UP = rm -rf out bin obj coverage.xml dotCoverReport.html db
 endif
 
 .PHONY: build run test coverage clean help
@@ -19,7 +19,6 @@ help:
 	@echo   make clean      - Clean build artifacts
 
 build:
-	mkdir data
 	dotnet build $(SOLUTION)
 
 run:
@@ -39,4 +38,4 @@ dotcover:
 clean:
 	dotnet clean
 	$(CLEAN_UP)
-	-mkdir data
+	-mkdir db
