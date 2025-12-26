@@ -19,6 +19,7 @@ help:
 	@echo   make clean      - Clean build artifacts
 
 build:
+	mkdir data
 	dotnet build $(SOLUTION)
 
 run:
@@ -38,3 +39,4 @@ dotcover:
 clean:
 	dotnet clean
 	$(CLEAN_UP)
+	-mkdir data
