@@ -1,0 +1,11 @@
+**/.bin
+**/.obj
+**/out
+**/.git
+**/.gitignore
+**/.vscode
+**/.dockerignore
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/Makefile

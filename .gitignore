@@ -1,0 +1,27 @@
+## [Visual Studio]
+bin/
+obj/
+TestResults/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## [Visual Studio Code]
+.vscode/
+
+## [Build Results]
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+
+## [Databases]
+*.db
+*.db-shm
+*.db-wal
+
+## [OS Specific]
+.DS_Store
+Thumbs.db
