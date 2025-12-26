@@ -25,3 +25,6 @@ build/
 ## [OS Specific]
 .DS_Store
 Thumbs.db
+
+.idea/
+coverage.xml
