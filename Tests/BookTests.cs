@@ -1,6 +1,8 @@
 using System.Net;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using AspDotNetCrudProject.Models;
 using Xunit;
 
@@ -13,8 +15,26 @@ namespace AspDotNetCrudProject.Tests
 
         public BookTests(WebApplicationFactory<Program> factory)
         {
-            _factory = factory;
-            _client = factory.CreateClient();
+            _factory = factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    // Remove the production DB registration
+                    var descriptor = services.SingleOrDefault(
+                        d => d.ServiceType == typeof(Microsoft.EntityFrameworkCore.DbContextOptions<Data.BookContext>));
+                    if (descriptor != null) services.Remove(descriptor);
+
+                    // Add a fresh in-memory SQLite connection for this test run
+                    var connection = new Microsoft.Data.Sqlite.SqliteConnection("DataSource=:memory:");
+                    connection.Open();
+
+                    services.AddDbContext<Data.BookContext>(options =>
+                    {
+                        options.UseSqlite(connection);
+                    });
+                });
+            });
+            _client = _factory.CreateClient();
         }
 
         [Fact]
