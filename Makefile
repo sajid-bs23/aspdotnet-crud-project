@@ -32,8 +32,8 @@ coverage:
 	dotnet-coverage collect "dotnet test" -f xml -o coverage.xml
 
 dotcover:
-	-dotnet tool install --global JetBrains.dotCover.GlobalTool
-	dotnet dotCover test --dcReportType=HTML --dcOutput=dotCoverReport.html
+	-dotnet tool install --global JetBrains.dotCover.CommandLineTools
+	dotCover cover --xml-report-output report.xml -- test --no-build $(SOLUTION)
 
 clean:
 	dotnet clean
