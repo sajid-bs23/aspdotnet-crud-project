@@ -4,7 +4,7 @@ else
 CLEAN_UP = rm -rf out bin obj coverage.xml dotCoverReport.html db
 endif
 
-.PHONY: build run test coverage clean help
+.PHONY: build run test coverage dotcover clean help
 
 PROJECT_NAME=AspDotNetCrudProject.csproj
 SOLUTION=AspDotNetCrudProject.sln
